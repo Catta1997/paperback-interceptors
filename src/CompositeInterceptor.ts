@@ -10,7 +10,7 @@ export class CompositeInterceptor extends Interceptor {
     new HttpErrorInterceptor(),
   ];
   private readonly interceptors: Interceptor[] = [];
-  constructor(interceptors: Interceptor[], cloudflareOptions: CloudflareOptions = {}) {
+  constructor(interceptors: Interceptor[] = [], cloudflareOptions: CloudflareOptions = {}) {
     super();
     this.interceptors = interceptors;
     this.cloudflareOptions = cloudflareOptions;
