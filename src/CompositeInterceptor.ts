@@ -1,17 +1,19 @@
 import { Interceptor } from "./Interceptor.js";
 import { Request, Response } from "@paperback/types";
-import { CloudflareInterceptor } from "./CloudflareInterceptor.js";
+import { CloudflareInterceptor, CloudflareOptions } from "./CloudflareInterceptor.js";
 import { HttpErrorInterceptor } from "./HttpErrorInterceptor.js";
 
 export class CompositeInterceptor extends Interceptor {
+  cloudflareOptions: CloudflareOptions = {};
   protected defaultInterceptors: Interceptor[] = [
-    new CloudflareInterceptor(),
+    new CloudflareInterceptor(this.cloudflareOptions),
     new HttpErrorInterceptor(),
   ];
   private readonly interceptors: Interceptor[] = [];
-  constructor(interceptors: Interceptor[]) {
+  constructor(interceptors: Interceptor[], cloudflareOptions: CloudflareOptions = {}) {
     super();
     this.interceptors = interceptors;
+    this.cloudflareOptions = cloudflareOptions;
   }
 
   protected async interceptResponse(req: Request, res: Response, data: ArrayBuffer) {
