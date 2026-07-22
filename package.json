@@ -1,6 +1,6 @@
 {
   "name": "paperback-interceptors",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "files": [
     "dist"
   ],
@@ -17,9 +17,9 @@
     "oxfmt": "^0.48.0",
     "oxlint": "^1.63.0",
     "oxlint-tsgolint": "^0.22.1",
-    "typescript": "^6.0.2"
+    "typescript": "^7.0.2"
   },
   "peerDependencies": {
-    "@paperback/types": "^1.0.0-alpha.89"
+    "@paperback/types": "^1.0.0-alpha.92"
   }
 }

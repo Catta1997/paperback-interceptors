@@ -1,8 +1,10 @@
-import { Interceptor } from "./Interceptor.js";
-import { Request, Response } from "@paperback/types";
+import {PaperbackInterceptor, Request, Response} from "@paperback/types";
 
-export class HttpErrorInterceptor extends Interceptor {
-  protected async interceptResponse(_: Request, response: Response, data: ArrayBuffer) {
+export class HttpErrorInterceptor extends PaperbackInterceptor {
+  override async interceptRequest(request: Request): Promise<Request> {
+      return request
+  }
+  override async interceptResponse(_: Request, response: Response, data: ArrayBuffer) {
     const status = response.status;
 
     if (status >= 400 && status < 500) {

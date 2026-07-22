@@ -1,2 +1,2 @@
-export { CompositeInterceptor } from "./CompositeInterceptor.js";
-export { Interceptor } from "./Interceptor.js";
+export { CloudflareInterceptor } from "./CloudflareInterceptor.js";
+export { HttpErrorInterceptor } from "./HttpErrorInterceptor.js";

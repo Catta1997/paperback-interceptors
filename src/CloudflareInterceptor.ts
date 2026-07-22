@@ -1,21 +1,23 @@
-import { Request, Response, CloudflareError } from "@paperback/types";
-import { Interceptor } from "./Interceptor.js";
+import {Request, Response, CloudflareError, PaperbackInterceptor} from "@paperback/types";
 
 export type CloudflareOptions = {
   url?: string;
   userAgent?: string;
 };
 
-export class CloudflareInterceptor extends Interceptor {
+export class CloudflareInterceptor extends PaperbackInterceptor {
+  override async interceptRequest(request: Request): Promise<Request> {
+      return request
+  }
   url: string | null = null;
   userAgent: string | null = null;
-  constructor(cloudflareOptions: CloudflareOptions) {
-    super();
+  constructor(cloudflareOptions: CloudflareOptions, id:string) {
+    super(id);
     this.url = cloudflareOptions?.url ?? null;
     this.userAgent = cloudflareOptions?.userAgent ?? null;
   }
 
-  protected async interceptResponse(
+  override async interceptResponse(
     request: Request,
     response: Response,
     data: ArrayBuffer,
@@ -30,7 +32,6 @@ export class CloudflareInterceptor extends Interceptor {
         },
       });
     }
-
     return data;
   }
 }
